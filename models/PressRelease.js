@@ -57,7 +57,9 @@ class PressRelease {
   }
   
   isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Simple, safe email validation regex to prevent ReDoS
+    // Supports alphanumeric, dots, hyphens, underscores, and plus signs
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   }
 }
