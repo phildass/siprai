@@ -19,6 +19,8 @@ class PressReleaseService {
   static getAll(filters = {}) {
     let results = [...pressReleases];
     
+    // Filter by region: when a specific region is selected, include both
+    // press releases targeted to that region AND those targeted to 'All' regions
     if (filters.region && filters.region !== 'All') {
       results = results.filter(pr => pr.region === filters.region || pr.region === 'All');
     }

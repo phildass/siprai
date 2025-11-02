@@ -18,6 +18,16 @@ router.get('/', (req, res) => {
   }
 });
 
+// Get statistics (must be before /:id route to avoid matching 'stats' as an ID)
+router.get('/stats/summary', (req, res) => {
+  try {
+    const stats = PressReleaseService.getStats();
+    res.json({ success: true, data: stats });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 // Get press release by ID
 router.get('/:id', (req, res) => {
   try {
@@ -85,16 +95,6 @@ router.post('/:id/distribute', (req, res) => {
     res.json({ success: true, data: pressRelease, message: 'Press release distributed successfully' });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
-  }
-});
-
-// Get statistics
-router.get('/stats/summary', (req, res) => {
-  try {
-    const stats = PressReleaseService.getStats();
-    res.json({ success: true, data: stats });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
   }
 });
 

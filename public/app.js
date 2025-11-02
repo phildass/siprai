@@ -1,7 +1,7 @@
 const API_BASE = '/api/press-releases';
 
 // Tab management
-function showTab(tabName) {
+function showTab(tabName, event) {
     const tabs = document.querySelectorAll('.tab-content');
     const btns = document.querySelectorAll('.tab-btn');
     
@@ -9,7 +9,9 @@ function showTab(tabName) {
     btns.forEach(btn => btn.classList.remove('active'));
     
     document.getElementById(`${tabName}-tab`).classList.add('active');
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
     
     if (tabName === 'view') {
         loadPressReleases();
@@ -250,6 +252,14 @@ function displayStatistics(stats) {
 
 // Utility functions
 function escapeHtml(text) {
+    // Handle null and undefined inputs
+    if (text == null) {
+        return '';
+    }
+    
+    // Convert to string if not already
+    text = String(text);
+    
     const map = {
         '&': '&amp;',
         '<': '&lt;',
