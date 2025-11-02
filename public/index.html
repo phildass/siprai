@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPRAI - South India Press Release Distribution</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗞️ SIPRAI</h1>
+            <p class="tagline">South India Press Release Distribution App</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="showTab('submit')">Submit Press Release</button>
+            <button class="tab-btn" onclick="showTab('view')">View Releases</button>
+            <button class="tab-btn" onclick="showTab('stats')">Statistics</button>
+        </nav>
+
+        <!-- Submit Press Release Tab -->
+        <div id="submit-tab" class="tab-content active">
+            <h2>Submit New Press Release</h2>
+            <form id="press-release-form">
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content *</label>
+                    <textarea id="content" name="content" rows="8" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="author">Author *</label>
+                        <input type="text" id="author" name="author" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="region">Target Region *</label>
+                        <select id="region" name="region" required>
+                            <option value="">Select Region</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="All">All South India</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Business">Business</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Health">Health</option>
+                            <option value="Education">Education</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail">Contact Email *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactPhone">Contact Phone</label>
+                    <input type="tel" id="contactPhone" name="contactPhone">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Press Release</button>
+            </form>
+        </div>
+
+        <!-- View Press Releases Tab -->
+        <div id="view-tab" class="tab-content">
+            <h2>Press Releases</h2>
+            
+            <div class="filters">
+                <select id="filter-region" onchange="loadPressReleases()">
+                    <option value="">All Regions</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="All">All South India</option>
+                </select>
+
+                <select id="filter-category" onchange="loadPressReleases()">
+                    <option value="">All Categories</option>
+                    <option value="Business">Business</option>
+                    <option value="Politics">Politics</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                </select>
+
+                <select id="filter-status" onchange="loadPressReleases()">
+                    <option value="">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="distributed">Distributed</option>
+                </select>
+            </div>
+
+            <div id="press-releases-list"></div>
+        </div>
+
+        <!-- Statistics Tab -->
+        <div id="stats-tab" class="tab-content">
+            <h2>Statistics</h2>
+            <div id="statistics-container"></div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
